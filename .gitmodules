@@ -1,0 +1,3 @@
+[submodule "sometimemachine"]
+	path = sometimemachine
+	url = https://github.com/thadk/sometimemachine.git

@@ -1,0 +1,19 @@
+{
+  "name": "bboxes-to-centroid-peacecorps-osm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "draw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^1.7.0",
+    "csv-write-stream": "^1.0.0",
+    "geo-viewport": "^0.1.1",
+    "geojson-area": "^0.2.1",
+    "minimist": "^1.2.0",
+    "turf-bbox-polygon": "^1.0.2"
+  }
+}
