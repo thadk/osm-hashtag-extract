@@ -6,7 +6,14 @@ Given the proper versions of the python bits, `npm install` inside `csv-bbox-cen
 
 and
 
-`make data/json/hotosm-featureCollection-Peace.json`
+`make data/json/hotosm-featureCollection-Peace.json` (example)
 
 The first one is only tested so far through:
 `make data/sqlite/changesets.sqlite`
+
+
+See Also
+-------
+
+* https://github.com/osmlab/osm-meta-util
+* https://www.developmentseed.org/blog/2015/02/19/tapping-into-osm-metadata/
