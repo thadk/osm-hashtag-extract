@@ -11,9 +11,9 @@ if (argv._ && argv._.length < 2) {
 }
 
 var writer = csvWriter();
-writer.pipe(fs.createWriteStream(argv._[2]));
+writer.pipe(fs.createWriteStream(argv._[1]));
 
-fs.createReadStream(argv._[2])
+fs.createReadStream(argv._[0])
   .pipe(csv())
   .on('data', function(data) {
 

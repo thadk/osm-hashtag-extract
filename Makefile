@@ -60,11 +60,13 @@ data/sqlite/changesets.sqlite: data/osm/changesets-latest.osm
 	python3 sometimemachine/stm.py $< $@
 
 data/csv/peacecorps-osm-bbox.csv: data/sqlite/changesets.sqlite
+	mkdir -p $(dir $@)
 	sqlite3 $< -header -csv \
 	'SELECT * FROM osm_changeset where msg like "%#PeaceCorps%"' \
-	>> peacecorps-osm-bbox.csv
+	>> $@
 
 data/csv/peacecorps-osm.csv: data/csv/peacecorps-osm-bbox.csv
+	mkdir -p $(dir $@)
 	echo 'Remember to run npm install in csv-bbox-centroid for now'
 	node csv-bbox-centroid/csv-bbox-centroid.js $< $@
 
