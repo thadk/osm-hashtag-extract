@@ -2,19 +2,9 @@
 #pbzip2, replacable with bzip2 with same flags
 
 # sudo apt-get install git bzip2
-# git clone https://github.com/tmcw/sometimemachine
-# wget http://planet.osm.org/planet/changesets-latest.osm.bz2
-# bunzip2 changesets-latest.osm.bz2
-
 # sudo apt-get install python3 python3-setuptools sqlite3 pbzip2
 # sudo easy_install3 pip
-# sudo pip3 install awscli
 # sudo pip3 install --upgrade python-dateutil
-# rm changesets.sqlite
-# cat sometimemachine/schema.sql | sqlite3 changesets.sqlite
-# time python3 sometimemachine/stm.py changesets-latest.osm changesets.sqlite
-# sqlite3 changesets.sqlite -header -csv 'SELECT * FROM osm_changeset where msg like "%#PeaceCo
-# rps%"' >> peacecorps-osm-bbox-`date "+%Y-%m-%d"`.csv
 
 #################
 # DOWNLOAD DATA #
