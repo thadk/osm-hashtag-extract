@@ -58,7 +58,7 @@ data/json/hotosm-featureCollection-all.json: data/json/hotosm-features.json
 #We had to rely on the non-featurecollection because jq got confused by the large FC array.
 data/json/hotosm-featureCollection-Peace.json: data/json/hotosm-features.json
 	mkdir -p $(dir $@)
-	jq -r '.features[] | select(.properties.name | . and contains("Peace") )|@json' $< > $(dir $@)hotosm-peace-features.json
+	jq -r 'map(select(.properties.name | . and contains("Peace") ))' $< > $(dir $@)hotosm-peace-features.json
 	turf featurecollection $(dir $@)hotosm-peace-features.json > $@
 	rm $(dir $@)hotosm-peace-features.json
 
