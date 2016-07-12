@@ -1,5 +1,8 @@
 See comments in Makefile for required apt-get and pip packages (tested on macOS)
 
+In order to get the submodules, be sure to clone with:
+`git clone --recursive https://github.com/thadk/osm-hashtag-extract`
+
 Given the proper versions of the python bits, `npm install` inside `csv-bbox-centroid` and all the mentioned binaries installed, most everything will generate with these two commands:
 
 `make data/csv/peacecorps-osm.csv`

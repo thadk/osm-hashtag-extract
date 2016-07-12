@@ -1,6 +1,10 @@
 #Dependencies to install
 #pbzip2, replacable with bzip2 with same flags
 
+#Useful tab completion for Make:
+# brew install bash-completion
+# add to .bash_profile
+
 # sudo apt-get install git bzip2
 # sudo apt-get install python3 python3-setuptools sqlite3 pbzip2
 # sudo easy_install3 pip
@@ -22,13 +26,12 @@ data/osm/changesets-latest.osm:
 	mv $@.download $@
 
 #hat tip to http://stackoverflow.com/a/12110773/272018
+#Create virtual Make jobs for each HOT task to date.
 LAST := 1988
 NUMBERS := $(shell seq ${LAST} 5)
 JOBS :=  $(addprefix data/json/subfiles/,$(addsuffix .json,${NUMBERS}))
-# .PHONY: all-hot-subfiles ${JOBS}
 all-hot-subfiles: ${JOBS} ; echo "$@ success"
 ${JOBS}: data/json/subfiles/%.json: ; curl -f http://tasks.hotosm.org/project/$*.json -o $@.download && mv $@.download $@ || touch $@
-#END=0; for i in $(shell seq 1988 0); do wget -P $(dir $@) http://tasks.hotosm.org/project/$i.json; done
 
 #################
 # RESHAPE DATA  #
@@ -52,12 +55,23 @@ data/json/hotosm-featureCollection-Peace.json: data/json/hotosm-features.json
 	turf featurecollection $(dir $@)hotosm-peace-features.json > $@
 	rm $(dir $@)hotosm-peace-features.json
 
+data/json/hotosm-featureCollection-Peace-ghsize.json: data/json/hotosm-featureCollection-Peace.json
+	mkdir -p $(dir $@)
+	mapshaper -i $< -simplify 90% keep-shapes -o format=topojson $@
+
+
 ## OSM Hashtags ##
 
 data/sqlite/changesets.sqlite: data/osm/changesets-latest.osm
 	mkdir -p $(dir $@)
 	cat sometimemachine/schema.sql | sqlite3 $(dir $@)changesets.sqlite
 	python3 sometimemachine/stm.py $< $@
+
+data/csv/peacecorps-osm-bbox-nocase.csv: data/sqlite/changesets.sqlite
+	mkdir -p $(dir $@)
+	sqlite3 $< -header -csv \
+	'SELECT rowid,* FROM osm_changeset where msg like "%#PeaceCorps%" COLLATE NOCASE' \
+	>> $@
 
 data/csv/peacecorps-osm-bbox.csv: data/sqlite/changesets.sqlite
 	mkdir -p $(dir $@)
@@ -70,6 +84,11 @@ data/csv/peacecorps-osm.csv: data/csv/peacecorps-osm-bbox.csv
 	echo 'Remember to run npm install in csv-bbox-centroid for now'
 	node csv-bbox-centroid/csv-bbox-centroid.js $< $@
 
+
+data/csv/peacecorps-osm-nocase.csv: data/csv/peacecorps-osm-bbox-nocase.csv
+	mkdir -p $(dir $@)
+	echo 'Remember to run npm install in csv-bbox-centroid for now'
+	node csv-bbox-centroid/csv-bbox-centroid.js $< $@
 
 #################
 # SHORTCUTS     #
