@@ -10,6 +10,8 @@
 # sudo easy_install3 pip
 # sudo pip3 install --upgrade python-dateutil
 
+# For the HOT Tasking manager item, you need jq (`brew install jq`) and `npm install -g turf-cli`
+
 #################
 # DOWNLOAD DATA #
 #################
@@ -30,6 +32,7 @@ data/osm/changesets-latest.osm:
 LAST := 1988
 NUMBERS := $(shell seq ${LAST} 5)
 JOBS :=  $(addprefix data/json/subfiles/,$(addsuffix .json,${NUMBERS}))
+#TODO makedir subfiles
 all-hot-subfiles: ${JOBS} ; echo "$@ success"
 ${JOBS}: data/json/subfiles/%.json: ; curl -f http://tasks.hotosm.org/project/$*.json -o $@.download && mv $@.download $@ || touch $@
 
@@ -45,7 +48,7 @@ data/json/hotosm-features.json: all-hot-subfiles
 
 data/json/hotosm-featureCollection-all.json: data/json/hotosm-features.json
 	mkdir -p $(dir $@)
-	turf featurecollection $(dir $@)hot-all.json > $@
+	turf featurecollection $< > $@
 
 #Filter only HOT OSM tasks that have Peace in the title.
 #We had to rely on the non-featurecollection because jq got confused by the large FC array.
