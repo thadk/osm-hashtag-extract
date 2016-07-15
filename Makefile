@@ -32,9 +32,10 @@ data/osm/changesets-latest.osm:
 LAST := 1988
 NUMBERS := $(shell seq ${LAST} 5)
 JOBS :=  $(addprefix data/json/subfiles/,$(addsuffix .json,${NUMBERS}))
-#TODO makedir subfiles
-all-hot-subfiles: ${JOBS} ; echo "$@ success"
-${JOBS}: data/json/subfiles/%.json: ; curl -f http://tasks.hotosm.org/project/$*.json -o $@.download && mv $@.download $@ || touch $@
+all-hot-subfiles:  ${JOBS} ; echo "$@ success"
+${JOBS}: data/json/subfiles/%.json:
+	mkdir -p $(dir $@)
+	curl -f http://tasks.hotosm.org/project/$*.json -o $@.download && mv $@.download $@ || touch $@
 
 #################
 # RESHAPE DATA  #
@@ -93,9 +94,17 @@ data/csv/peacecorps-osm-nocase.csv: data/csv/peacecorps-osm-bbox-nocase.csv
 	echo 'Remember to run npm install in csv-bbox-centroid for now'
 	node csv-bbox-centroid/csv-bbox-centroid.js $< $@
 
+#The percent is a wildcard for whatever hashtag you like.
+data/csv/hashtag-%-osm-bbox.csv: data/sqlite/changesets.sqlite
+	mkdir -p $(dir $@)
+	sqlite3 $< -header -csv \
+	'SELECT rowid, * FROM osm_changeset where msg like "%#$*%"' \
+	>> $@
+
 #################
 # SHORTCUTS     #
 #################
+
 
 #########
 # CLEAN #
