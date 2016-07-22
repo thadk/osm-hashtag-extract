@@ -5,7 +5,7 @@
 # brew install bash-completion
 # add to .bash_profile
 
-# sudo apt-get install git bzip2
+# sudo apt-get install bzip2
 # sudo apt-get install python3 python3-setuptools sqlite3 pbzip2
 # sudo easy_install3 pip
 # sudo pip3 install --upgrade python-dateutil
@@ -14,20 +14,18 @@
 
 #Install prereqs (mac requires Brew and NPM)
 install-mac:
-	sudo brew install jq git pbzip2 python3 sqlite3
+	echo "node and brew are required. If python3 has trouble, download from https://www.python.org/downloads/mac-osx/"
+	brew install jq pbzip2 sqlite3
+	sudo npm install -g turf-cli
+	npm install ./csv-bbox-centroid -prefix ./csv-bbox-centroid
+	brew install python3
 	sudo pip3 install --upgrade python-dateutil
-	npm install -g turf-cli
-	cd csv-bbox-centroid/
-	npm install
-	cd ..
 
 install-ubuntu:
-	sudo apt-get install jq git python3 python3-setuptools sqlite3 pbzip2
+	sudo apt-get install jq python3 python3-setuptools sqlite3 pbzip2
 	sudo easy_install3 pip
 	sudo pip3 install --upgrade python-dateutil
-	cd csv-bbox-centroid/
-	npm install
-	cd ..
+	npm install ./csv-bbox-centroid -prefix ./csv-bbox-centroid
 
 
 #################
