@@ -12,6 +12,24 @@
 
 # For the HOT Tasking manager item, you need jq (`brew install jq`) and `npm install -g turf-cli`
 
+#Install prereqs (mac requires Brew and NPM)
+install-mac:
+	sudo brew install jq git pbzip2 python3 sqlite3
+	sudo pip3 install --upgrade python-dateutil
+	npm install -g turf-cli
+	cd csv-bbox-centroid/
+	npm install
+	cd ..
+
+install-ubuntu:
+	sudo apt-get install jq git python3 python3-setuptools sqlite3 pbzip2
+	sudo easy_install3 pip
+	sudo pip3 install --upgrade python-dateutil
+	cd csv-bbox-centroid/
+	npm install
+	cd ..
+
+
 #################
 # DOWNLOAD DATA #
 #################
@@ -29,7 +47,7 @@ data/osm/changesets-latest.osm:
 
 #hat tip to http://stackoverflow.com/a/12110773/272018
 #Create virtual Make jobs for each HOT task to date.
-LAST := 1988
+LAST := 2031
 NUMBERS := $(shell seq ${LAST} 5)
 JOBS :=  $(addprefix data/json/subfiles/,$(addsuffix .json,${NUMBERS}))
 all-hot-subfiles:  ${JOBS} ; echo "$@ success"
@@ -58,6 +76,11 @@ data/json/hotosm-featureCollection-Peace.json: data/json/hotosm-features.json
 	jq -r 'map(select(.properties.name | . and contains("Peace") ))' $< > $(dir $@)hotosm-peace-features.json
 	turf featurecollection $(dir $@)hotosm-peace-features.json > $@
 	rm $(dir $@)hotosm-peace-features.json
+
+data/json/hotosm-featureCollection-topo.json: data/json/hotosm-featureCollection-all.json
+	mkdir -p $(dir $@)
+	mapshaper -i $< -simplify 90% keep-shapes -o format=topojson $@
+
 
 data/json/hotosm-featureCollection-Peace-ghsize.json: data/json/hotosm-featureCollection-Peace.json
 	mkdir -p $(dir $@)
