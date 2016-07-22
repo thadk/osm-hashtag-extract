@@ -2,7 +2,7 @@
   "name": "bboxes-to-centroid-peacecorps-osm",
   "version": "1.0.0",
   "description": "",
-  "main": "draw.js",
+  "main": "csv-bbox-centroid.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
