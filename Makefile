@@ -1,17 +1,3 @@
-#Dependencies to install
-#pbzip2, replacable with bzip2 with same flags
-
-#Useful tab completion for Make:
-# brew install bash-completion
-# add to .bash_profile
-
-# sudo apt-get install bzip2
-# sudo apt-get install python3 python3-setuptools sqlite3 pbzip2
-# sudo easy_install3 pip
-# sudo pip3 install --upgrade python-dateutil
-
-# For the HOT Tasking manager item, you need jq (`brew install jq`) and `npm install -g turf-cli`
-
 #Install prereqs (mac requires Brew and NPM)
 install-mac:
 	echo "node and brew are required. If python3 has trouble, download from https://www.python.org/downloads/mac-osx/"
@@ -137,3 +123,17 @@ clean-local:
 
 clean: clean-local
 	rm -rf data/osm
+
+#Dependencies to install
+#pbzip2, replacable with bzip2 with same flags
+
+#Useful tab completion for Make:
+# brew install bash-completion
+# add to .bash_profile
+
+# sudo apt-get install bzip2
+# sudo apt-get install python3 python3-setuptools sqlite3 pbzip2
+# sudo easy_install3 pip
+# sudo pip3 install --upgrade python-dateutil
+
+# For the HOT Tasking manager item, you need jq (`brew install jq`) and `npm install -g turf-cli`
