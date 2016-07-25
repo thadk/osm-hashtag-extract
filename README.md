@@ -18,9 +18,14 @@ and
 
 *Process*: Downloads the 2000-or-so public polygon GeoJSON files from the HOT OSM Task Manager one-by-one, converts it to a feature collection, filters to any particular hashtag/title query, and simplifies the final feature collection for viewing on Github (e.g. https://github.com/thadk/osm-hashtag-extract/blob/master/data/json/hotosm-featureCollection-Peace-ghsize.json ).
 
-The first one is only tested so far through:
-`make data/sqlite/changesets.sqlite`
+and
 
+`make data/csv/hashtag-YourOwnHashtagHere-osm-bbox.csv`
+*Process*: Downloads/extracts 4gb compressed/15gb uncompressed OSM changesets file, converts it to a SQLite database, queries the database for your hashtag, writes out as a bounding-box CSV. In order to get points rather than bounding-boxes, you can copy the `data/csv/peacecorps-osm.csv` rule, give it a second new name and replaces the `data/csv/peacecorps-osm-bbox.csv` after the colon with your bounding box CSV filename.
+
+You can add more rules to the Makefile to do your own hashtag queries.
+
+Because we use Make, the script will not try to re-download the files needed to run on each use. If you want to update them to latest versions, simply clean out the original files it downloaded from the `data/` folder. 
 
 See Also
 -------
