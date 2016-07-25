@@ -1,4 +1,4 @@
-See comments in Makefile for required `apt-get`/`brew`, `npm` and `pip` packages (tested on macOS). `install-mac` is tested on macOS.
+See comments in Makefile for required `apt-get`/`brew`, `npm` and `pip` packages (tested on macOS). `make install-mac` is tested on macOS.
 
 In order to get the submodules, be sure to clone with:
 `git clone --recursive https://github.com/thadk/osm-hashtag-extract`
