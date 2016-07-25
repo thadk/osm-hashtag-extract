@@ -1,4 +1,4 @@
-See comments in Makefile for required `apt-get`/`brew`, `npm` and `pip` packages (tested on macOS)
+See comments in Makefile for required `apt-get`/`brew`, `npm` and `pip` packages (tested on macOS). `install-mac` is tested on macOS.
 
 In order to get the submodules, be sure to clone with:
 `git clone --recursive https://github.com/thadk/osm-hashtag-extract`
@@ -21,6 +21,7 @@ and
 and
 
 `make data/csv/hashtag-YourOwnHashtagHere-osm-bbox.csv`
+
 *Process*: Downloads/extracts 4gb compressed/15gb uncompressed OSM changesets file, converts it to a SQLite database, queries the database for your hashtag, writes out as a bounding-box CSV. In order to get points rather than bounding-boxes, you can copy the `data/csv/peacecorps-osm.csv` rule, give it a second new name and replaces the `data/csv/peacecorps-osm-bbox.csv` after the colon with your bounding box CSV filename.
 
 You can add more rules to the Makefile to do your own hashtag queries.
