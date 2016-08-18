@@ -2,13 +2,15 @@ A Makefile flow to generate geojson and CSV extracts of the [OpenStreetMap](http
 
 Complements http://osm-analytics.org
 
-See comments in Makefile for required `apt-get`/`brew`, `npm` and `pip` packages (tested on macOS). `make install-mac` is tested on macOS.
+##Installing##
 
 In order to get the submodules, be sure to clone with:
 `git clone --recursive https://github.com/thadk/osm-hashtag-extract`
  If you forgot, run `git submodule update --init --recursive`.
  
+See comments in Makefile for required `apt-get`/`brew`, `npm` and `pip` packages (tested on macOS). `make install-mac` is tested on macOS.
 
+##Usage##
 
 Given the proper versions of the python bits, `npm install` inside `csv-bbox-centroid` and all the mentioned binaries installed, most everything will generate with these two commands:
 
