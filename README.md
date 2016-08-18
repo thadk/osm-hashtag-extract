@@ -1,3 +1,7 @@
+A Makefile flow to generate geojson and CSV extracts of the [OpenStreetMap](https://openstreetmap.org) planet changes by Hashtag and also to download the Humanitarian OpenStreetMap Team's (HOT) disaster and other [OSM-Tasks](https://tasks.hotosm.org)  by a user specified hashtag.
+
+Complements http://osm-analytics.org
+
 See comments in Makefile for required `apt-get`/`brew`, `npm` and `pip` packages (tested on macOS). `make install-mac` is tested on macOS.
 
 In order to get the submodules, be sure to clone with:
