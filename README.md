@@ -1,6 +1,6 @@
 A Makefile flow to generate geojson and CSV extracts of the [OpenStreetMap](https://openstreetmap.org) planet changes by Hashtag and also to download the Humanitarian OpenStreetMap Team's (HOT) disaster and other [OSM-Tasks](https://tasks.hotosm.org)  by a user specified hashtag.
 
-Complements http://osm-analytics.org
+This project complements http://osm-analytics.org
 
 ##Installing##
 
