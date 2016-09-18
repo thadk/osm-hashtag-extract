@@ -45,7 +45,7 @@ data/osm/changesets-latest.osm:
 
 #hat tip to http://stackoverflow.com/a/12110773/272018
 #Create virtual Make jobs for each HOT task to date.
-LAST := 2031
+LAST := 2155
 NUMBERS := $(shell seq ${LAST} 5)
 JOBS :=  $(addprefix data/json/subfiles/,$(addsuffix .json,${NUMBERS}))
 all-hot-subfiles:  ${JOBS} ; echo "$@ success"
