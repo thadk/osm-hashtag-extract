@@ -12,6 +12,7 @@ if (argv._ && argv._.length < 2) {
 
 var writer = csvWriter();
 writer.pipe(fs.createWriteStream(argv._[1]));
+var counter = 1;
 
 fs.createReadStream(argv._[0])
   .pipe(csv())
@@ -41,20 +42,40 @@ fs.createReadStream(argv._[0])
 
     /* standard format */
     var bbox = [parseFloat(data.min_lon), parseFloat(data.min_lat), parseFloat(data.max_lon), parseFloat(data.max_lat)];
-    var rectPoly = turfBboxPolygon(bbox);
+    try {
+      if (data.rowid !== 'rowid') {
+        /* Header row sometimes streams in at unexpected places */
+        var rectPoly = turfBboxPolygon(bbox);
+        var out = rectangleCentroid(rectangle);
+        var area = geojsonArea.geometry(rectPoly.geometry);
 
-    var out = rectangleCentroid(rectangle);
-    var area = geojsonArea.geometry(rectPoly.geometry);
+        writer.write({
+          rowid: data.rowid,
+          user_id: data.user_id,
+          msg: data.msg,
+          closed_at: data.closed_at,
+          num_changes: data.num_changes,
+          longitude: out.coordinates[0],
+          latitude: out.coordinates[1],
+          poly: JSON.stringify(rectPoly),
+          area: area
+        });
 
-    writer.write({
-      rowid: data.rowid,
-      user_id: data.user_id,
-      msg: data.msg,
-      closed_at: data.closed_at,
-      num_changes: data.num_changes,
-      longitude: out.coordinates[0],
-      latitude: out.coordinates[1],
-      poly: JSON.stringify(rectPoly),
-      area: area
-    });
+      }
+      counter += 1;
+
+    }
+    catch (err) {
+      console.error("Error on",counter, "from CSV,", argv._[0] ,"skipping", err);
+      console.log({
+        rowid: data.rowid,
+        user_id: data.user_id,
+        msg: data.msg,
+        closed_at: data.closed_at,
+        num_changes: data.num_changes,
+        bbox: bbox
+      })
+      counter += 1;
+    }
+
   });
