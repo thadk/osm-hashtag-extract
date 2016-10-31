@@ -18,12 +18,6 @@ install-ubuntu:
 # DOWNLOAD DATA #
 #################
 
-data/osm/planet_latest.osm:
-	mkdir -p $(dir $@)
-	curl http://planet.openstreetmap.org/planet_latest.osm.bz2 | pbzip2 -cd >$@.download
-	mv $@.download $@
-
-
 data/osm/changesets-latest.osm:
 	mkdir -p $(dir $@)
 	curl http://planet.osm.org/planet/changesets-latest.osm.bz2  | pbzip2 -cd >$@.download
