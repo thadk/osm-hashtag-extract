@@ -14,6 +14,8 @@ See comments in Makefile for required `apt-get`/`brew`, `npm` and `pip` packages
 
 Given the proper versions of the python bits, `npm install` inside `csv-bbox-centroid` and all the mentioned binaries installed, most everything will generate with these two commands:
 
+![image](https://media.giphy.com/media/l0HlTRNXTEATghoBi/giphy.gif) (#PeaceCorps Sept2016 data viz with Carto)
+
 `make data/csv/peacecorps-osm.csv`
 
 *Process*: Downloads/extracts 4gb compressed/15gb uncompressed OSM changesets file, converts it to a SQLite database, queries the database for your hashtag, writes out as a bounding-box CSV and then takes the bounding-box CSV and finally uses a small NodeJS script to convert it into a long/lat point CSV.
@@ -22,7 +24,7 @@ and
 
 `make data/json/hotosm-featureCollection-Peace.json` (example)
 
-<img src="https://cloud.githubusercontent.com/assets/283343/20332727/f2715c62-ab7b-11e6-8e8f-3bfc35560406.png"/>
+![image](https://cloud.githubusercontent.com/assets/283343/20336383/9c3b0b2e-ab97-11e6-9e4b-82e47cfdc4b2.png) (basic data viz with QGIS, through Jul2016)
 
 *Process*: Downloads the 2000-or-so public polygon GeoJSON files from the HOT OSM Task Manager one-by-one, converts it to a feature collection, filters to any particular hashtag/title query, and simplifies the final feature collection for viewing on Github (e.g. https://github.com/thadk/osm-hashtag-extract/blob/master/data/json/hotosm-featureCollection-Peace-ghsize.json ).
 
