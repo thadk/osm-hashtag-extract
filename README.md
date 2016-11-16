@@ -22,6 +22,8 @@ and
 
 `make data/json/hotosm-featureCollection-Peace.json` (example)
 
+<img src="https://cloud.githubusercontent.com/assets/283343/20332727/f2715c62-ab7b-11e6-8e8f-3bfc35560406.png"/>
+
 *Process*: Downloads the 2000-or-so public polygon GeoJSON files from the HOT OSM Task Manager one-by-one, converts it to a feature collection, filters to any particular hashtag/title query, and simplifies the final feature collection for viewing on Github (e.g. https://github.com/thadk/osm-hashtag-extract/blob/master/data/json/hotosm-featureCollection-Peace-ghsize.json ).
 
 and
