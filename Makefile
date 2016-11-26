@@ -25,7 +25,7 @@ data/osm/changesets-latest.osm:
 
 #hat tip to http://stackoverflow.com/a/12110773/272018
 #Create virtual Make jobs for each HOT task to date.
-LAST := 2155
+LAST := 2328
 NUMBERS := $(shell seq ${LAST} 5)
 JOBS :=  $(addprefix data/json/subfiles/,$(addsuffix .json,${NUMBERS}))
 all-hot-subfiles:  ${JOBS} ; echo "$@ success"
@@ -45,14 +45,20 @@ data/json/hotosm-features.json: all-hot-subfiles
 
 data/json/hotosm-featureCollection-all.json: data/json/hotosm-features.json
 	mkdir -p $(dir $@)
-	turf featurecollection $< > $@
+	echo '{ "type": "FeatureCollection", "features":' >> $@
+	cat $< >> $@
+	echo '}' >> $@
+	# turf featureCollection $< > $@
 
 #Filter only HOT OSM tasks that have Peace in the title.
 #We had to rely on the non-featurecollection because jq got confused by the large FC array.
 data/json/hotosm-featureCollection-Peace.json: data/json/hotosm-features.json
 	mkdir -p $(dir $@)
 	jq -r 'map(select(.properties.name | . and contains("Peace") ))' $< > $(dir $@)hotosm-peace-features.json
-	turf featurecollection $(dir $@)hotosm-peace-features.json > $@
+	echo '{ "type": "FeatureCollection", "features":' >> $@
+	cat $(dir $@)hotosm-peace-features.json >> $@
+	echo '}' >> $@
+	# turf featurecollection $(dir $@)hotosm-peace-features.json > $@
 	rm $(dir $@)hotosm-peace-features.json
 
 data/json/hotosm-featureCollection-topo.json: data/json/hotosm-featureCollection-all.json
