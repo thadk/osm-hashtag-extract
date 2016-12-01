@@ -29,9 +29,9 @@ and
 
 ![image](https://cloud.githubusercontent.com/assets/283343/20336383/9c3b0b2e-ab97-11e6-9e4b-82e47cfdc4b2.png) 
 
-***basic data viz with QGIS, tasks through Jul2016***
+***HOT Tasking Manager, comprehensive public tasks: basic data viz with QGIS, tasks through Jul2016***
 
-*Process*: Downloads the 2000-or-so public polygon GeoJSON files from the HOT OSM Task Manager one-by-one, converts it to a feature collection, filters to any particular hashtag/title query, and simplifies the final feature collection for viewing on Github (e.g. https://github.com/thadk/osm-hashtag-extract/blob/master/data/json/hotosm-featureCollection-Peace-ghsize.json ).
+*Process*: Downloads the 2000-or-so public polygon GeoJSON files from http://tasks.hotosm.org one-by-one, converts it to a feature collection, filters to any particular hashtag/title query, and simplifies the final feature collection for viewing on Github (e.g. https://github.com/thadk/osm-hashtag-extract/blob/master/data/json/hotosm-featureCollection-Peace-ghsize.json ).
 
 and
 
