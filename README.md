@@ -48,3 +48,4 @@ See Also
 
 * https://github.com/osmlab/osm-meta-util
 * https://www.developmentseed.org/blog/2015/02/19/tapping-into-osm-metadata/
+* https://github.com/MalawiGeospatialTools/osm-extract/blob/master/Makefile
